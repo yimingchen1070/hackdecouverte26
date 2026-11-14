@@ -21,18 +21,45 @@ document.querySelectorAll("[data-tab]").forEach((button) => {
   });
 });
 
-let remainingCandidates = 0;
-function respondToCandidate() {
-  remainingCandidates += 1;
-  document.querySelector("#swipe-status").textContent = "Your response has been recorded in this prototype.";
-  if (remainingCandidates >= 1) {
-    document.querySelector("#candidate-card").hidden = true;
-    document.querySelector("#swipe-status").textContent = "No more study buddy profiles are available yet.";
-  }
-}
-document.querySelector("#pass-candidate").addEventListener("click", respondToCandidate);
-document.querySelector("#like-candidate").addEventListener("click", respondToCandidate);
 
+const matchingFrame = document.querySelector(".matching-interface");
+const chatFrame = document.querySelector(".chat-interface");
+let chatFrameReady = false;
+let pendingStudyInvite = null;
+
+function openChatsTab() {
+  document.querySelector('[data-tab="chats"]')?.click();
+}
+
+chatFrame?.addEventListener("load", () => {
+  chatFrameReady = true;
+  sendPendingStudyInvite();
+});
+
+function sendPendingStudyInvite() {
+  if (!pendingStudyInvite || !chatFrame?.contentWindow) return;
+  if (!chatFrameReady) {
+    chatFrame.contentWindow.postMessage({ type: "lockedin:ping" }, "*");
+    return;
+  }
+  chatFrame.contentWindow.postMessage({ type: "lockedin:open-study-chat", profile: pendingStudyInvite }, "*");
+  pendingStudyInvite = null;
+}
+
+window.addEventListener("message", (event) => {
+  if (event.source === chatFrame?.contentWindow && event.data?.type === "lockedin:chat-ready") {
+    chatFrameReady = true;
+    sendPendingStudyInvite();
+    return;
+  }
+
+  if (event.source !== matchingFrame?.contentWindow || event.data?.type !== "lockedin:study-invite") return;
+  const profile = event.data.profile;
+  if (!profile || typeof profile.name !== "string" || !profile.name.trim()) return;
+  pendingStudyInvite = profile;
+  openChatsTab();
+  sendPendingStudyInvite();
+});
 document.querySelector("#sign-out").addEventListener("click", async () => {
   if (appClient) await appClient.auth.signOut();
   window.location.href = "index.html";

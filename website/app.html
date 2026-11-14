@@ -21,19 +21,22 @@
   </header>
   <main>
     <section id="swipe" aria-labelledby="swipe-title">
-      <h2 id="swipe-title">Find study buddies</h2>
-      <article id="candidate-card">
-        <h3>Student profile</h3>
-        <p>Study buddy profiles will appear here.</p>
-        <button type="button" id="pass-candidate">Pass</button>
-        <button type="button" id="like-candidate">Like</button>
-      </article>
-      <p id="swipe-status" role="status"></p>
+      <h2 id="swipe-title" class="visually-hidden">Find study buddies</h2>
+      <iframe
+        class="matching-interface"
+        src="matching_interface/index.html"
+        title="Browse study buddy profiles and swipe to pass or invite someone to study"
+        loading="eager"
+      ></iframe>
     </section>
     <section id="chats" aria-labelledby="chats-title" hidden>
-      <h2 id="chats-title">Chats</h2>
-      <p>Your matches and conversations will appear here.</p>
-      <ul id="chat-list"><li>No chats yet.</li></ul>
+      <h2 id="chats-title" class="visually-hidden">Chats</h2>
+      <iframe
+        class="chat-interface"
+        src="chatting/index.html"
+        title="Your study matches and conversations"
+        loading="eager"
+      ></iframe>
     </section>
     <section id="profile" class="profile-page" aria-labelledby="profile-title" hidden>
       <div class="profile-heading">

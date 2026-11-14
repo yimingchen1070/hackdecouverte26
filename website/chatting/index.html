@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#24201a" />
+    <title>Locked In — Messages</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #24201a;
+        --plum: #3f2548;
+        --indigo: #35369c;
+        --lavender: #7c679e;
+        --olive: #c8c793;
+        --paper: #f5f3ed;
+        --white: #fffefa;
+        --muted: #89847f;
+        --line: #e9e5dd;
+        --green: #82916d;
+        font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        padding: 26px;
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse at 2% 5%, rgba(124, 103, 158, .17), transparent 34%),
+          radial-gradient(ellipse at 96% 95%, rgba(200, 199, 147, .3), transparent 34%),
+          var(--paper);
+      }
+
+      button, input { font: inherit; }
+      button { color: inherit; }
+
+      .app {
+        display: grid;
+        grid-template-columns: 340px minmax(0, 1fr);
+        width: min(1320px, 100%);
+        height: min(850px, calc(100vh - 52px));
+        min-height: 620px;
+        margin: 0 auto;
+        overflow: hidden;
+        background: var(--white);
+        border: 1px solid rgba(36, 32, 26, .07);
+        border-radius: 22px;
+        box-shadow: 0 24px 80px rgba(36, 32, 26, .11);
+      }
+
+      .sidebar {
+        display: flex;
+        min-height: 0;
+        flex-direction: column;
+        background: #fbfaf6;
+        border-right: 1px solid var(--line);
+      }
+
+      .sidebar-top { padding: 26px 23px 18px; }
+      .brand-row, .profile-row, .chat-row, .chat-heading, .match-heading, .composer, .chat-topbar {
+        display: flex;
+        align-items: center;
+      }
+
+      .brand-row { justify-content: space-between; }
+      .brand {
+        display: inline-flex;
+        gap: 9px;
+        align-items: center;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -.7px;
+        text-decoration: none;
+      }
+      .brand-mark {
+        display: grid;
+        width: 31px;
+        height: 31px;
+        place-items: center;
+        overflow: hidden;
+        color: var(--olive);
+        background: var(--plum);
+        border-radius: 12px;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+      }
+      .brand-mark svg { display: block; width: 100%; height: 100%; }
+      .icon-button {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        place-items: center;
+        color: var(--lavender);
+        background: transparent;
+        border: 0;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      .icon-button:hover { color: var(--plum); background: #f0edf1; }
+      .icon-button svg { width: 19px; height: 19px; }
+
+      .intro { margin: 27px 0 20px; }
+      .eyebrow {
+        margin: 0 0 6px;
+        color: var(--lavender);
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+      }
+      .intro h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 30px;
+        font-weight: 500;
+        letter-spacing: -.8px;
+      }
+      .intro p:last-child { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
+
+      .search-wrap { position: relative; }
+      .search-wrap svg {
+        position: absolute;
+        top: 50%;
+        left: 13px;
+        width: 16px;
+        height: 16px;
+        color: #99938d;
+        transform: translateY(-50%);
+      }
+      .search {
+        width: 100%;
+        height: 42px;
+        padding: 0 13px 0 39px;
+        color: var(--ink);
+        background: #f1efe9;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        outline: none;
+        font-size: 12px;
+      }
+      .search:focus { border-color: var(--lavender); box-shadow: 0 0 0 3px rgba(124, 103, 158, .12); }
+      .search::placeholder { color: #a39d96; }
+
+      .matches { padding: 18px 23px 15px; }
+      .match-heading { justify-content: space-between; margin-bottom: 12px; }
+      .section-label {
+        margin: 0;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 1.45px;
+        text-transform: uppercase;
+      }
+      .match-count { color: var(--lavender); font-size: 11px; }
+      .match-list { display: flex; gap: 12px; overflow-x: auto; padding: 2px 1px 5px; scrollbar-width: none; }
+      .match-list::-webkit-scrollbar { display: none; }
+      .match-person {
+        display: grid;
+        flex: 0 0 58px;
+        justify-items: center;
+        gap: 6px;
+        padding: 0;
+        background: none;
+        border: 0;
+        cursor: pointer;
+      }
+      .match-person span:last-child {
+        max-width: 58px;
+        overflow: hidden;
+        color: #716b66;
+        font-size: 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .avatar {
+        position: relative;
+        display: grid;
+        flex: 0 0 auto;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        overflow: hidden;
+        color: var(--white);
+        background: var(--plum);
+        border-radius: 50%;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 14px;
+        letter-spacing: .3px;
+      }
+      .avatar.large { width: 46px; height: 46px; font-size: 15px; }
+      .avatar.small { width: 38px; height: 38px; font-size: 12px; }
+      .avatar::after {
+        position: absolute;
+        right: 0;
+        bottom: 1px;
+        width: 10px;
+        height: 10px;
+        background: var(--green);
+        border: 2px solid #fbfaf6;
+        border-radius: 50%;
+        content: "";
+      }
+      .avatar.offline::after { display: none; }
+      .tone-plum { background: var(--plum); }
+      .tone-indigo { background: var(--indigo); }
+      .tone-lavender { background: var(--lavender); }
+      .tone-olive { color: var(--ink); background: var(--olive); }
+      .match-person:hover .avatar { outline: 3px solid rgba(124, 103, 158, .22); outline-offset: 2px; }
+
+      .inbox { display: flex; min-height: 0; flex: 1; flex-direction: column; }
+      .inbox-heading { display: flex; align-items: center; justify-content: space-between; padding: 13px 23px 10px; }
+      .filter-button {
+        padding: 5px 9px;
+        color: var(--lavender);
+        background: #f0edf1;
+        border: 0;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 10px;
+      }
+      .conversation-list { min-height: 0; overflow-y: auto; padding: 0 11px 15px; }
+      .conversation {
+        display: flex;
+        width: 100%;
+        gap: 11px;
+        align-items: center;
+        padding: 12px;
+        text-align: left;
+        background: transparent;
+        border: 0;
+        border-radius: 13px;
+        cursor: pointer;
+      }
+      .conversation:hover { background: #f5f2ee; }
+      .conversation.active { background: #efebf0; }
+      .conversation-copy { min-width: 0; flex: 1; }
+      .chat-row { justify-content: space-between; gap: 6px; }
+      .chat-name { overflow: hidden; color: var(--ink); font-size: 12px; font-weight: 680; text-overflow: ellipsis; white-space: nowrap; }
+      .chat-time { flex: 0 0 auto; color: #aaa39d; font-size: 9px; }
+      .chat-preview { overflow: hidden; margin: 4px 0 0; color: #928b85; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+      .unread-dot { width: 7px; height: 7px; flex: 0 0 auto; background: var(--indigo); border-radius: 50%; }
+      .no-results { padding: 20px 12px; color: var(--muted); font-size: 12px; text-align: center; }
+
+      .sidebar-footer { display: flex; align-items: center; gap: 10px; padding: 15px 20px; border-top: 1px solid var(--line); }
+      .profile-copy { min-width: 0; flex: 1; }
+      .profile-name { margin: 0; font-size: 11px; font-weight: 700; }
+      .profile-note { margin: 3px 0 0; color: var(--muted); font-size: 10px; }
+
+      .main { display: flex; min-width: 0; min-height: 0; flex-direction: column; background: var(--white); }
+      .chat-topbar { min-height: 79px; justify-content: space-between; padding: 14px 28px; border-bottom: 1px solid var(--line); }
+      .chat-heading { min-width: 0; gap: 12px; }
+      .chat-heading-copy { min-width: 0; }
+      .chat-heading h2 { overflow: hidden; margin: 0; font-size: 14px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+      .chat-heading p { margin: 4px 0 0; color: var(--muted); font-size: 10px; }
+      .chat-actions { display: flex; gap: 4px; }
+      .mobile-back { display: none; }
+
+      .connection-note {
+        display: flex;
+        width: fit-content;
+        max-width: calc(100% - 40px);
+        align-items: center;
+        gap: 8px;
+        align-self: center;
+        margin: 20px 0 7px;
+        padding: 9px 13px;
+        color: #756d62;
+        background: #f5f3ea;
+        border: 1px solid #efecdf;
+        border-radius: 20px;
+        font-size: 10px;
+      }
+      .connection-note svg { width: 13px; height: 13px; flex: 0 0 auto; color: var(--lavender); }
+      .messages {
+        display: flex;
+        min-height: 0;
+        flex: 1;
+        flex-direction: column;
+        gap: 16px;
+        overflow-y: auto;
+        padding: 18px 7.5% 26px;
+        scrollbar-color: #d7d1dc transparent;
+        scrollbar-width: thin;
+      }
+      .day-divider { display: flex; align-items: center; gap: 12px; margin: 8px 0; color: #aaa39c; font-size: 9px; }
+      .day-divider::before, .day-divider::after { height: 1px; flex: 1; background: var(--line); content: ""; }
+      .message { display: flex; max-width: 76%; gap: 9px; align-items: flex-end; align-self: flex-start; }
+      .message.mine { align-self: flex-end; }
+      .message-bubble {
+        padding: 12px 15px;
+        color: #514a44;
+        background: #f2f0eb;
+        border-radius: 16px 16px 16px 4px;
+        font-size: 12px;
+        line-height: 1.55;
+        overflow-wrap: anywhere;
+      }
+      .message.mine .message-bubble { color: white; background: var(--plum); border-radius: 16px 16px 4px 16px; }
+      .message-time { margin-top: 5px; color: #a49d96; font-size: 9px; }
+      .message.mine .message-time { text-align: right; }
+      .message-avatar { width: 26px; height: 26px; font-size: 9px; }
+      .message-avatar::after { display: none; }
+      .message-avatar-spacer { width: 26px; flex: 0 0 auto; }
+      .typing { display: none; align-items: center; gap: 5px; align-self: flex-start; padding-left: 35px; color: var(--muted); font-size: 10px; }
+      .typing.visible { display: flex; }
+      .typing-dots { display: flex; gap: 3px; }
+      .typing-dots i { width: 4px; height: 4px; background: var(--lavender); border-radius: 50%; animation: pulse 1s infinite alternate; }
+      .typing-dots i:nth-child(2) { animation-delay: .2s; }
+      .typing-dots i:nth-child(3) { animation-delay: .4s; }
+      @keyframes pulse { to { opacity: .3; transform: translateY(-2px); } }
+
+      .prompt-row { display: flex; flex-wrap: wrap; gap: 7px; padding: 0 7.5% 14px; }
+      .prompt {
+        padding: 7px 11px;
+        color: var(--lavender);
+        background: transparent;
+        border: 1px solid #e8e2ec;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 10px;
+        transition: background .15s, color .15s;
+      }
+      .prompt:hover { color: white; background: var(--lavender); }
+      .composer-wrap { padding: 0 7.5% 19px; }
+      .composer {
+        min-height: 54px;
+        gap: 8px;
+        padding: 7px 8px 7px 16px;
+        background: #f6f4f0;
+        border: 1px solid #eeebe5;
+        border-radius: 16px;
+      }
+      .composer:focus-within { border-color: #b7a9c5; box-shadow: 0 0 0 3px rgba(124, 103, 158, .09); }
+      .composer input {
+        min-width: 0;
+        height: 36px;
+        flex: 1;
+        color: var(--ink);
+        background: transparent;
+        border: 0;
+        outline: 0;
+        font-size: 12px;
+      }
+      .composer input::placeholder { color: #aaa39c; }
+      .send-button {
+        display: grid;
+        width: 39px;
+        height: 39px;
+        flex: 0 0 auto;
+        place-items: center;
+        color: var(--olive);
+        background: var(--plum);
+        border: 0;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background .15s, transform .15s;
+      }
+      .send-button:hover { background: var(--indigo); transform: translateY(-1px); }
+      .send-button svg { width: 17px; height: 17px; }
+      .composer-hint { margin: 8px 2px 0; color: #aaa39c; font-size: 9px; }
+
+      @media (max-width: 760px) {
+        body { padding: 0; background: var(--white); }
+        .app { display: block; width: 100%; height: 100dvh; min-height: 520px; border: 0; border-radius: 0; box-shadow: none; }
+        .sidebar { width: 100%; height: 100%; border: 0; }
+        .main { display: none; width: 100%; height: 100%; }
+        .app.chat-open .sidebar { display: none; }
+        .app.chat-open .main { display: flex; }
+        .sidebar-top { padding-top: max(20px, env(safe-area-inset-top)); }
+        .chat-topbar { min-height: 72px; padding: 12px 14px; }
+        .mobile-back { display: grid; width: 34px; margin-left: -6px; }
+        .chat-heading { gap: 8px; }
+        .chat-heading-copy h2 { font-size: 13px; }
+        .chat-actions .icon-button { width: 34px; }
+        .messages { padding: 15px 16px 22px; }
+        .message { max-width: 88%; }
+        .prompt-row, .composer-wrap { padding-right: 16px; padding-left: 16px; }
+        .composer-wrap { padding-bottom: max(14px, env(safe-area-inset-bottom)); }
+      }
+
+      @media (min-width: 761px) and (max-height: 700px) {
+        body { padding: 14px; }
+        .app { height: calc(100vh - 28px); min-height: 560px; }
+        .sidebar-top { padding-top: 18px; }
+        .intro { margin-top: 18px; }
+        .matches { padding-top: 12px; padding-bottom: 10px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      }
+      /* LockedIn palette and pixel details, adapted from the main website. */
+      :root {
+        color-scheme: dark;
+        --ink: #c8c793;
+        --plum: #3f2548;
+        --indigo: #35369c;
+        --lavender: #9b83c6;
+        --olive: #c8c793;
+        --paper: #211a27;
+        --white: #2b2033;
+        --muted: rgba(200, 199, 147, .7);
+        --line: rgba(200, 199, 147, .2);
+        --green: #c8c793;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      body { padding: 0; color: var(--ink); background: radial-gradient(ellipse at 2% 25%, rgba(63, 37, 72, .72), transparent 38%), radial-gradient(ellipse at 95% 75%, rgba(53, 54, 156, .34), transparent 34%), #211a27; }
+      .app { width: 100%; height: min(850px, 100vh); min-height: 640px; border: 1px solid var(--line); border-radius: 0; background: var(--white); box-shadow: 0 0 0 3px #24201a, 0 0 0 5px var(--indigo); grid-template-columns: minmax(235px, 34%) minmax(0, 1fr); }
+      .sidebar { background: #241d2b; border-right-color: var(--line); }
+      .main { background: #211a27; }
+      .brand, .intro h1, .chat-heading h2, .chat-name, .profile-name { color: var(--ink); }
+      .brand { font-family: "Press Start 2P", monospace; font-size: 10px; letter-spacing: 0; }
+      .brand-mark, .send-button { border-radius: 0; }
+      .intro h1 { font: 10px/1.9 "Press Start 2P", monospace; letter-spacing: 0; }
+      .eyebrow, .section-label, .chat-heading p, .profile-note, .chat-preview, .chat-time, .message-time, .composer-hint, .no-results, .intro p:last-child, .match-person span:last-child { color: var(--muted); }
+      .search, .composer { color: var(--ink); background: #211a27; border: 1px solid var(--line); border-radius: 0; }
+      .search::placeholder, .composer input::placeholder { color: var(--muted); }
+      .conversation:hover, .conversation.active, .filter-button, .prompt { color: var(--ink); background: var(--plum); border-color: var(--lavender); border-radius: 0; }
+      .conversation { border-radius: 0; }
+      .message-bubble { color: var(--ink); background: #3f2548; border: 1px solid var(--line); border-radius: 0; font-family: "IBM Plex Mono", monospace; }
+      .message.mine .message-bubble { color: var(--ink); background: var(--indigo); border-radius: 0; }
+      .connection-note { color: var(--ink); background: #3f2548; border: 1px solid var(--line); border-radius: 0; }
+      .prompt { border-radius: 0; }
+      .avatar { border: 1px solid var(--olive); border-radius: 0; }
+      .avatar::after { border-radius: 0; border-color: #241d2b; }
+      .icon-button { color: var(--ink); border-radius: 0; }
+      .icon-button:hover, .prompt:hover { color: var(--ink); background: var(--indigo); }
+      .filter-button { border: 1px solid var(--line); }
+      .composer:focus-within { border-color: var(--olive); box-shadow: 0 0 0 2px var(--indigo); }
+      .send-button { color: var(--ink); background: var(--indigo); border: 1px solid var(--olive); }
+      .typing-dots span { background: var(--lavender); }
+      @media (max-width: 760px) { body { background: #211a27; } .app { width: 100%; height: 100dvh; min-height: 520px; border: 0; box-shadow: none; } }
+    </style>
+  </head>
+  <body>
+    <div class="app" id="app">
+      <aside class="sidebar" aria-label="Messages and matches">
+        <div class="sidebar-top">
+          <div class="brand-row">
+            <a class="brand" href="#" aria-label="Locked In home">
+              <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 8v16h8M23 8v16M20 8h6M20 24h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Locked In
+            </a>
+            <button class="icon-button" aria-label="More options" title="More options">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
+            </button>
+          </div>
+          <label class="search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4 4"/></svg>
+            <input id="search" class="search" type="search" placeholder="Search your conversations" aria-label="Search conversations" />
+          </label>
+        </div>
+
+        <section class="matches" aria-labelledby="matches-title">
+          <div class="match-heading">
+            <h2 class="section-label" id="matches-title">New connections</h2>
+            <span class="match-count" id="match-count"></span>
+          </div>
+          <div class="match-list" id="match-list" aria-label="Your new matches"></div>
+        </section>
+
+        <section class="inbox" aria-labelledby="inbox-title">
+          <div class="inbox-heading">
+            <h2 class="section-label" id="inbox-title">Messages</h2>
+            <button class="filter-button" id="filter-button" type="button" aria-pressed="false">All chats</button>
+          </div>
+          <div class="conversation-list" id="conversation-list"></div>
+        </section>
+
+        <div class="sidebar-footer">
+          <span class="avatar small tone-olive offline" aria-hidden="true">YO</span>
+          <div class="profile-copy">
+            <p class="profile-name">Your profile</p>
+            <p class="profile-note">Here for good company</p>
+          </div>
+          <button class="icon-button" aria-label="Profile settings" title="Profile settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.3 1-1.4 2.4-1.6-.6a7.7 7.7 0 0 1-1.4.8l-.3 1.7h-2.8l-.3-1.7a7.7 7.7 0 0 1-1.4-.8l-1.6.6-1.4-2.4 1.3-1a7 7 0 0 1 0-1.7l-1.3-1 1.4-2.4 1.6.6a7.7 7.7 0 0 1 1.4-.8l.3-1.7h2.8l.3 1.7a7.7 7.7 0 0 1 1.4.8l1.6-.6 1.4 2.4-1.3 1a7 7 0 0 1 0 1.6Z"/></svg>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main" aria-label="Conversation">
+        <header class="chat-topbar">
+          <div class="chat-heading">
+            <button class="icon-button mobile-back" id="back-button" aria-label="Back to messages">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <span class="avatar large tone-indigo offline" id="active-avatar" aria-hidden="true"></span>
+            <div class="chat-heading-copy">
+              <h2 id="active-name"></h2>
+              <p id="active-subtitle"></p>
+            </div>
+          </div>
+          <div class="chat-actions">
+            <button class="icon-button" aria-label="View profile" title="View profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.3"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+            </button>
+            <button class="icon-button" aria-label="More conversation options" title="More options">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="connection-note" id="connection-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>
+          <span id="connection-copy"></span>
+        </div>
+
+        <section class="messages" id="messages" aria-label="Message history" aria-live="polite"></section>
+        <div class="typing" id="typing" aria-label="Typing">
+          <span id="typing-name"></span>
+          <span class="typing-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+        <div class="prompt-row" id="prompt-row" aria-label="Conversation starters">
+          <button class="prompt" type="button">What are you studying?</button>
+          <button class="prompt" type="button">Tell me your go-to playlist</button>
+          <button class="prompt" type="button">Coffee &amp; a study date?</button>
+        </div>
+        <form class="composer-wrap" id="message-form">
+          <div class="composer">
+            <input id="message-input" type="text" placeholder="Say something lovely..." autocomplete="off" aria-label="Write a message" />
+            <button class="send-button" type="submit" aria-label="Send message" title="Send message">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+          </div>
+          <p class="composer-hint">A good conversation is a great place to start.</p>
+        </form>
+      </main>
+    </div>
+
+    <script>
+      const conversations = [
+        {
+          id: "thomas",
+          name: "Thomas Kolivakis",
+          initials: "TK",
+          color: "tone-indigo",
+          online: true,
+          subject: "Arts and Science · 2nd year",
+          preview: "That little bookshop sounds perfect ☕",
+          time: "2m",
+          unread: true,
+          messages: [
+            { text: "Hey! I saw you wanted to study in a cafe. Have you been to cafe Olimpico in the Plateau?", time: "10:32", mine: false },
+            { text: "I haven't yet, but it's been on my list! I love the little bookshop next door.", time: "10:34", mine: true },
+            { text: "That sounds like a date ☕", time: "10:36", mine: false }
+          ]
+        },
+        {
+          id: "l",
+          name: "Nicole",
+          initials: "N",
+          color: "tone-plum",
+          online: false,
+          subject: "Pure and Applied · 2nd year",
+          preview: "Concordia Library, date/study-sesh, me and you",
+          time: "1h",
+          unread: true,
+          messages: [
+            { text: "Important question: Knock Knock", time: "Yesterday", mine: false },
+            { text: "Who's there?", time: "Yesterday", mine: true },
+            { text: "Where, What", time: "Yesterday", mine: false },
+            { text: "Where, What, Who?", time: "Yesterday", mine: true },
+            { text: "Concordia Library, date/study-sesh, me and you", time: "Yesterday", mine: false }
+          ]
+        },
+        {
+          id: "elmer",
+          name: "Elmer Hu",
+          initials: "EH",
+          color: "tone-olive",
+          online: true,
+          subject: "Pure and Applied · 1st year",
+          preview: "Oh, ok ...",
+          time: "3h",
+          unread: false,
+          messages: [
+            { text: "Your profile says you love outside. What's your favourite spot?", time: "Yesterday", mine: false },
+            { text: "Anywhere with u...", time: "Yesterday", mine: true },
+            { text: "Oh, ok ...", time: "Yesterday", mine: false }
+          ]
+        },
+        {
+          id: "Olivia",
+          name: "Olivia",
+          initials: "O",
+          color: "tone-lavender",
+          online: false,
+          subject: "Liberal Arts · 1st year",
+          preview: "Same here! What are you reading?",
+          time: "1d",
+          unread: false,
+          messages: [
+            { text: "I could talk about novels for hours. Are you reading anything good right now?", time: "Monday", mine: false },
+            { text: "Just started a little book of essays I found at a used book store.", time: "Monday", mine: true },
+            { text: "Same here! What are you reading?", time: "Monday", mine: false }
+          ]
+        }
+      ];
+
+      const app = document.getElementById("app");
+      const conversationList = document.getElementById("conversation-list");
+      const matchList = document.getElementById("match-list");
+      const messagesElement = document.getElementById("messages");
+      const searchInput = document.getElementById("search");
+      const filterButton = document.getElementById("filter-button");
+      let activeId = conversations[0].id;
+      let unreadOnly = false;
+
+      function escapeHtml(value) {
+        return value.replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        })[character]);
+      }
+
+      function renderConnections() {
+        document.getElementById("match-count").textContent = `${conversations.length} lovely humans`;
+        matchList.innerHTML = conversations.map((person) => `
+          <button class="match-person" type="button" data-conversation="${person.id}" aria-label="Message ${escapeHtml(person.name)}">
+            <span class="avatar ${person.color} ${person.online ? "" : "offline"}">${escapeHtml(person.initials)}</span>
+            <span>${escapeHtml(person.name.split(" ")[0])}</span>
+          </button>
+        `).join("");
+      }
+
+      function renderConversationList() {
+        const query = searchInput.value.trim().toLowerCase();
+        const visible = conversations.filter((person) => {
+          const matchesQuery = `${person.name} ${person.subject} ${person.preview}`.toLowerCase().includes(query);
+          return matchesQuery && (!unreadOnly || person.unread);
+        });
+        filterButton.textContent = unreadOnly ? "Unread" : "All chats";
+        filterButton.setAttribute("aria-pressed", String(unreadOnly));
+        if (!visible.length) {
+          conversationList.innerHTML = `<p class="no-results">No chats found. Try another search.</p>`;
+          return;
+        }
+        conversationList.innerHTML = visible.map((person) => `
+          <button class="conversation ${person.id === activeId ? "active" : ""}" type="button" data-conversation="${person.id}" aria-current="${person.id === activeId ? "true" : "false"}">
+            <span class="avatar ${person.color} ${person.online ? "" : "offline"}">${escapeHtml(person.initials)}</span>
+            <span class="conversation-copy">
+              <span class="chat-row"><span class="chat-name">${escapeHtml(person.name)}</span><span class="chat-time">${escapeHtml(person.time)}</span></span>
+              <span class="chat-row"><span class="chat-preview">${escapeHtml(person.preview)}</span>${person.unread ? '<span class="unread-dot" aria-label="Unread"></span>' : ""}</span>
+            </span>
+          </button>
+        `).join("");
+      }
+
+      function renderMessages(person) {
+        messagesElement.innerHTML = `
+          <div class="day-divider"><span>Today</span></div>
+          ${person.messages.map((message) => `
+            <article class="message ${message.mine ? "mine" : ""}">
+              ${message.mine ? "" : `<span class="avatar message-avatar ${person.color} offline" aria-hidden="true">${escapeHtml(person.initials)}</span>`}
+              <div>
+                <div class="message-bubble">${escapeHtml(message.text)}</div>
+                <div class="message-time">${escapeHtml(message.time)}${message.mine ? " · Sent" : ""}</div>
+              </div>
+              ${message.mine ? '<span class="message-avatar-spacer"></span>' : ""}
+            </article>
+          `).join("")}
+        `;
+        messagesElement.scrollTop = messagesElement.scrollHeight;
+      }
+
+      function selectConversation(id) {
+        const person = conversations.find((entry) => entry.id === id);
+        if (!person) return;
+        activeId = id;
+        person.unread = false;
+        const avatar = document.getElementById("active-avatar");
+        avatar.className = `avatar large ${person.color} ${person.online ? "" : "offline"}`;
+        avatar.textContent = person.initials;
+        document.getElementById("active-name").textContent = person.name;
+        document.getElementById("active-subtitle").textContent = `${person.online ? "Online now · " : ""}${person.subject}`;
+        document.getElementById("connection-copy").textContent = `You and ${person.name.split(" ")[0]} found your common ground`;
+        document.getElementById("typing-name").textContent = `${person.name.split(" ")[0]} is typing`;
+        renderMessages(person);
+        renderConversationList();
+        app.classList.add("chat-open");
+      }
+
+      document.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-conversation]");
+        if (button) selectConversation(button.dataset.conversation);
+      });
+
+      searchInput.addEventListener("input", renderConversationList);
+      filterButton.addEventListener("click", () => {
+        unreadOnly = !unreadOnly;
+        renderConversationList();
+      });
+      document.getElementById("back-button").addEventListener("click", () => app.classList.remove("chat-open"));
+
+      document.getElementById("message-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const input = document.getElementById("message-input");
+        const text = input.value.trim();
+        if (!text) return;
+        const person = conversations.find((entry) => entry.id === activeId);
+        const now = new Date();
+        const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false });
+        person.messages.push({ text, time, mine: true });
+        person.preview = text;
+        person.time = "now";
+        renderMessages(person);
+        renderConversationList();
+        input.value = "";
+      });
+
+      document.getElementById("prompt-row").addEventListener("click", (event) => {
+        const prompt = event.target.closest(".prompt");
+        if (!prompt) return;
+        const input = document.getElementById("message-input");
+        input.value = prompt.textContent;
+        input.focus();
+      });
+
+      function openStudyChat(profile) {
+        if (!profile || typeof profile.name !== "string" || !profile.name.trim()) return;
+        const name = profile.name.trim();
+        const normalizedName = name.toLowerCase();
+        let person = conversations.find((entry) => {
+          const existingName = entry.name.toLowerCase();
+          return existingName === normalizedName || existingName.startsWith(`${normalizedName} `);
+        });
+
+        if (!person) {
+          const slug = normalizedName.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "study-partner";
+          const initials = name.split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
+          person = {
+            id: `invite-${slug}`,
+            name,
+            initials,
+            color: "tone-indigo",
+            online: false,
+            subject: profile.program || "Study partner",
+            preview: "New study invite — say hello!",
+            time: "now",
+            unread: false,
+            messages: [],
+          };
+          conversations.unshift(person);
+        }
+
+        person.unread = false;
+        person.time = "now";
+        renderConnections();
+        selectConversation(person.id);
+        const input = document.getElementById("message-input");
+        input.value = `Hey ${person.name.split(" ")[0]}! Want to study together?`;
+        input.focus();
+      }
+
+      window.addEventListener("message", (event) => {
+        if (event.source !== window.parent) return;
+        if (event.data?.type === "lockedin:ping") {
+          window.parent.postMessage({ type: "lockedin:chat-ready" }, "*");
+          return;
+        }
+        if (event.data?.type === "lockedin:open-study-chat") openStudyChat(event.data.profile);
+      });
+
+      renderConnections();
+      selectConversation(activeId);
+      window.parent.postMessage({ type: "lockedin:chat-ready" }, "*");
+    </script>
+  </body>
+</html>
