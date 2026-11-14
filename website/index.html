@@ -3,20 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LockedIn</title>
+  <meta name="theme-color" content="#24201a">
+  <meta name="description" content="LockedIn helps students meet people to learn, study, and grow with.">
+  <title>LockedIn | Find your study community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="landing.css">
 </head>
 <body>
-  <header>
-    <h1>LockedIn</h1>
-    <nav aria-label="Main navigation"><a href="signup.html">Sign up</a></nav>
-  </header>
-  <main>
-    <section aria-labelledby="welcome-title">
-      <h2 id="welcome-title">Find your study community</h2>
-      <p>LockedIn helps students meet people to learn, study, and grow with.</p>
-      <a href="signup.html"><button type="button">Sign up</button></a>
-    </section>
-  </main>
+  <div class="page">
+    <header class="top">
+      <a class="logo" href="index.html" aria-label="LockedIn home">LockedIn</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="signup.html">Sign up</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card hero" aria-labelledby="welcome-title">
+        <p class="eyebrow">LOCKEDIN · STUDY TOGETHER</p>
+        <h1 id="welcome-title">Find your study community</h1>
+        <p class="lede">LockedIn helps students meet people to learn, study, and grow with.</p>
+        <a class="pill" href="signup.html">▼ SIGN UP ▼</a>
+      </section>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="landing.js"></script>
 </body>
 </html>
-
