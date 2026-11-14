@@ -1,12 +1,12 @@
 :root {
-  --night: #071018;
-  --panel: #101d33;
-  --btn: #0d1830;
-  --ink: #050a14;
-  --steel: #1b3050;
-  --muted: #7d93b8;
-  --paper: #e8f1ff;
-  --cyan: #4de3ff;
+  --night: #24201a;
+  --panel: #3f2548;
+  --btn: #35389c;
+  --ink: #24201a;
+  --steel: #7c679e;
+  --muted: #7c679e;
+  --paper: #c8c793;
+  --cyan: #c8c793;
 }
 
 * {
@@ -18,8 +18,8 @@ body {
   min-height: 100vh;
   color: var(--paper);
   background:
-    linear-gradient(#102033 0 18%, transparent 18%),
-    linear-gradient(#0c1a2c 0 100%);
+    linear-gradient(#3f2548 0 18%, transparent 18%),
+    linear-gradient(#24201a 0 100%);
   font-family: VT323, "Courier New", monospace;
 }
 
@@ -62,7 +62,7 @@ a {
   box-shadow:
     0 0 0 2px var(--ink),
     0 0 0 4px var(--steel),
-    0 4px 0 4px #0b1424;
+    0 4px 0 4px #24201a;
 }
 
 .nav a:active {
@@ -70,7 +70,7 @@ a {
   box-shadow:
     0 0 0 2px var(--ink),
     0 0 0 4px var(--steel),
-    0 2px 0 4px #0b1424;
+    0 2px 0 4px #24201a;
 }
 
 .card {
@@ -133,8 +133,8 @@ label {
   box-shadow:
     0 0 0 3px var(--ink),
     0 0 0 6px var(--cyan),
-    0 6px 0 6px #123048,
-    0 0 26px rgba(77, 227, 255, 0.3);
+    0 6px 0 6px #35389c,
+    0 0 26px rgba(200, 199, 147, 0.35);
 }
 
 .pill:active {
@@ -142,7 +142,7 @@ label {
   box-shadow:
     0 0 0 3px var(--ink),
     0 0 0 6px var(--cyan),
-    0 3px 0 6px #123048;
+    0 3px 0 6px #35389c;
 }
 
 .next {
@@ -188,7 +188,7 @@ input {
   padding: 10px 12px 8px;
   border: 0;
   border-radius: 0;
-  background: #0b1526;
+  background: #24201a;
   color: var(--paper);
   font: inherit;
   font-size: 26px;
