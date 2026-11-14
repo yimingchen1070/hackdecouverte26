@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign up | LockedIn</title>
+</head>
+<body>
+  <header><h1>Create your LockedIn account</h1></header>
+  <main>
+    <form id="signup-form">
+      <label>Username <input name="username" autocomplete="username" required></label>
+      <label>Name <input name="name" autocomplete="name" required></label>
+      <label>Email <input name="email" type="email" autocomplete="email" required></label>
+      <label>Password <input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+      <label>School <input name="school" required></label>
+      <label>Program <input name="program" required></label>
+      <label>Age <input name="age" type="number" min="13" max="120" required></label>
+      <label>Languages <input name="languages" placeholder="English, French" required></label>
+      <button type="submit">Create account</button>
+    </form>
+    <p id="signup-status" role="status"></p>
+    <p><a href="index.html">Back to presentation</a></p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="signup.js"></script>
+</body>
+</html>
+

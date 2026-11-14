@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LockedIn</title>
+</head>
+<body>
+  <header>
+    <h1>LockedIn</h1>
+    <nav aria-label="LockedIn sections">
+      <button type="button" data-tab="swipe">Find study buddies</button>
+      <button type="button" data-tab="chats">Chats</button>
+      <button type="button" data-tab="profile">My profile</button>
+      <button type="button" id="sign-out">Sign out</button>
+    </nav>
+  </header>
+  <main>
+    <section id="swipe" aria-labelledby="swipe-title">
+      <h2 id="swipe-title">Find study buddies</h2>
+      <article id="candidate-card">
+        <h3>Student profile</h3>
+        <p>Study buddy profiles will appear here.</p>
+        <button type="button" id="pass-candidate">Pass</button>
+        <button type="button" id="like-candidate">Like</button>
+      </article>
+      <p id="swipe-status" role="status"></p>
+    </section>
+    <section id="chats" aria-labelledby="chats-title" hidden>
+      <h2 id="chats-title">Chats</h2>
+      <p>Your matches and conversations will appear here.</p>
+      <ul id="chat-list"><li>No chats yet.</li></ul>
+    </section>
+    <section id="profile" aria-labelledby="profile-title" hidden>
+      <h2 id="profile-title">My profile</h2>
+      <p id="signed-in-user"></p>
+      <p>Education, clubs, volunteering, projects, and other experiences are managed in profile setup.</p>
+      <a href="profile-setup.html">Edit profile experiences</a>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

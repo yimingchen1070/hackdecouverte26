@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile setup | LockedIn</title>
+</head>
+<body>
+  <header><h1>Build your profile</h1></header>
+  <main>
+    <p id="profile-status" role="status">Checking your account…</p>
+    <form id="experience-form" hidden>
+      <h2>Add education, clubs, and experience</h2>
+      <label>Type
+        <select name="type" required>
+          <option value="education">Education</option>
+          <option value="work">Work</option>
+          <option value="volunteering">Volunteering</option>
+          <option value="project">Project</option>
+          <option value="award">Award</option>
+          <option value="extracurricular">Club or extracurricular</option>
+        </select>
+      </label>
+      <label>Title <input name="title" required></label>
+      <label>School or organization <input name="organization"></label>
+      <label>Description <textarea name="description"></textarea></label>
+      <label>Start date <input name="start_date" type="date"></label>
+      <label>End date <input name="end_date" type="date"></label>
+      <label><input name="is_current" type="checkbox"> I am still doing this</label>
+      <button type="submit">Save experience</button>
+    </form>
+    <p><a href="app.html">Continue to LockedIn</a></p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="profile-setup.js"></script>
+</body>
+</html>
+
