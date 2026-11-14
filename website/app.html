@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LockedIn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="profile.css">
 </head>
 <body>
   <header>
@@ -31,11 +35,45 @@
       <p>Your matches and conversations will appear here.</p>
       <ul id="chat-list"><li>No chats yet.</li></ul>
     </section>
-    <section id="profile" aria-labelledby="profile-title" hidden>
-      <h2 id="profile-title">My profile</h2>
-      <p id="signed-in-user"></p>
-      <p>Education, clubs, volunteering, projects, and other experiences are managed in profile setup.</p>
-      <a href="profile-setup.html">Edit profile experiences</a>
+    <section id="profile" class="profile-page" aria-labelledby="profile-title" hidden>
+      <div class="profile-heading">
+        <p class="pixel-eyebrow">PLAYER PROFILE</p>
+        <h2 id="profile-title">My profile</h2>
+        <p class="profile-subtitle">Your study identity and journey.</p>
+      </div>
+      <p id="profile-status" class="profile-status" role="status">Loading your profile…</p>
+      <article class="identity-card">
+        <div class="avatar" id="profile-avatar" aria-hidden="true">L</div>
+        <div class="identity-copy">
+          <p class="pixel-eyebrow">LOCKEDIN MEMBER</p>
+          <h3 id="profile-name">Student</h3>
+          <p id="profile-handle" class="profile-handle"></p>
+          <a id="profile-linkedin" class="linkedin-link" target="_blank" rel="noreferrer" hidden>LinkedIn profile ↗</a>
+        </div>
+        <a class="pixel-button edit-profile" href="profile-setup.html">Edit experiences</a>
+      </article>
+      <div class="profile-grid">
+        <article class="profile-card">
+          <p class="pixel-eyebrow">STUDY DETAILS</p>
+          <dl class="detail-list">
+            <div><dt>School</dt><dd id="profile-school">—</dd></div>
+            <div><dt>Program</dt><dd id="profile-program">—</dd></div>
+            <div><dt>Age</dt><dd id="profile-age">—</dd></div>
+            <div><dt>Languages</dt><dd id="profile-languages">—</dd></div>
+          </dl>
+        </article>
+        <article class="profile-card">
+          <p class="pixel-eyebrow">ACADEMIC INTERESTS</p>
+          <div id="profile-interests" class="interest-list"><span class="muted-copy">No interests added yet.</span></div>
+        </article>
+      </div>
+      <section class="journey-section" aria-labelledby="journey-title">
+        <div class="journey-heading">
+          <div><p class="pixel-eyebrow">YOUR JOURNEY</p><h3 id="journey-title">Education &amp; experiences</h3></div>
+          <a class="pixel-button" href="profile-setup.html">+ Add experience</a>
+        </div>
+        <div id="experience-list" class="experience-list"><p class="muted-copy">Loading experiences…</p></div>
+      </section>
     </section>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -43,4 +81,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
