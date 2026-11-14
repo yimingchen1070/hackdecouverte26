@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <meta name="theme-color" content="#24201a" />
-    <title>Locked In — Messages</title>
+    <title>StudySwipe — Messages</title>
     <style>
       :root {
         color-scheme: light;
@@ -401,7 +401,7 @@
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       }
-      /* LockedIn palette and pixel details, adapted from the main website. */
+      /* StudySwipe palette and pixel details, adapted from the main website. */
       :root {
         color-scheme: dark;
         --ink: #c8c793;
@@ -449,13 +449,13 @@
       <aside class="sidebar" aria-label="Messages and matches">
         <div class="sidebar-top">
           <div class="brand-row">
-            <a class="brand" href="#" aria-label="Locked In home">
+            <a class="brand" href="#" aria-label="StudySwipe home">
               <span class="brand-mark" aria-hidden="true">
                 <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 8v16h8M23 8v16M20 8h6M20 24h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M23 9H11l-3 4 3 4h10l3 4-3 4H9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
-              Locked In
+              StudySwipe
             </a>
             <button class="icon-button" aria-label="More options" title="More options">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
@@ -484,10 +484,10 @@
         </section>
 
         <div class="sidebar-footer">
-          <span class="avatar small tone-olive offline" aria-hidden="true">YO</span>
+          <span class="avatar small tone-olive offline" aria-hidden="true">ME</span>
           <div class="profile-copy">
             <p class="profile-name">Your profile</p>
-            <p class="profile-note">Here for good company</p>
+            <p class="profile-note">Ready to study together</p>
           </div>
           <button class="icon-button" aria-label="Profile settings" title="Profile settings">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.3 1-1.4 2.4-1.6-.6a7.7 7.7 0 0 1-1.4.8l-.3 1.7h-2.8l-.3-1.7a7.7 7.7 0 0 1-1.4-.8l-1.6.6-1.4-2.4 1.3-1a7 7 0 0 1 0-1.7l-1.3-1 1.4-2.4 1.6.6a7.7 7.7 0 0 1 1.4-.8l.3-1.7h2.8l.3 1.7a7.7 7.7 0 0 1 1.4.8l1.6-.6 1.4 2.4-1.3 1a7 7 0 0 1 0 1.6Z"/></svg>
@@ -530,11 +530,11 @@
         <div class="prompt-row" id="prompt-row" aria-label="Conversation starters">
           <button class="prompt" type="button">What are you studying?</button>
           <button class="prompt" type="button">Tell me your go-to playlist</button>
-          <button class="prompt" type="button">Coffee &amp; a study date?</button>
+          <button class="prompt" type="button">Want to study at the library?</button>
         </div>
         <form class="composer-wrap" id="message-form">
           <div class="composer">
-            <input id="message-input" type="text" placeholder="Say something lovely..." autocomplete="off" aria-label="Write a message" />
+            <input id="message-input" type="text" placeholder="Write a message..." autocomplete="off" aria-label="Write a message" />
             <button class="send-button" type="submit" aria-label="Send message" title="Send message">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
             </button>
@@ -559,7 +559,7 @@
           messages: [
             { text: "Hey! I saw you wanted to study in a cafe. Have you been to cafe Olimpico in the Plateau?", time: "10:32", mine: false },
             { text: "I haven't yet, but it's been on my list! I love the little bookshop next door.", time: "10:34", mine: true },
-            { text: "That sounds like a date ☕", time: "10:36", mine: false }
+            { text: "A study session sounds great ☕", time: "10:36", mine: false }
           ]
         },
         {
@@ -569,15 +569,15 @@
           color: "tone-plum",
           online: false,
           subject: "Pure and Applied · 2nd year",
-          preview: "Concordia Library, date/study-sesh, me and you",
+          preview: "Want to meet at Concordia Library for a study session?",
           time: "1h",
           unread: true,
           messages: [
-            { text: "Important question: Knock Knock", time: "Yesterday", mine: false },
-            { text: "Who's there?", time: "Yesterday", mine: true },
-            { text: "Where, What", time: "Yesterday", mine: false },
-            { text: "Where, What, Who?", time: "Yesterday", mine: true },
-            { text: "Concordia Library, date/study-sesh, me and you", time: "Yesterday", mine: false }
+            { text: "What do you think about studying at Concordia Library this week?", time: "Yesterday", mine: false },
+            { text: "That works for me. Which day are you free?", time: "Yesterday", mine: true },
+            { text: "How about Thursday afternoon?", time: "Yesterday", mine: false },
+            { text: "How about Thursday afternoon?, Who?", time: "Yesterday", mine: true },
+            { text: "Want to meet at Concordia Library for a study session?", time: "Yesterday", mine: false }
           ]
         },
         {
@@ -587,13 +587,13 @@
           color: "tone-olive",
           online: true,
           subject: "Pure and Applied · 1st year",
-          preview: "Oh, ok ...",
+          preview: "That sounds peaceful. I will try that spot sometime.",
           time: "3h",
           unread: false,
           messages: [
-            { text: "Your profile says you love outside. What's your favourite spot?", time: "Yesterday", mine: false },
-            { text: "Anywhere with u...", time: "Yesterday", mine: true },
-            { text: "Oh, ok ...", time: "Yesterday", mine: false }
+            { text: "Your profile says you enjoy the outdoors. What is your favorite place to study?", time: "Yesterday", mine: false },
+            { text: "Probably the library by a window. It is quiet and bright.", time: "Yesterday", mine: true },
+            { text: "That sounds peaceful. I will try that spot sometime.", time: "Yesterday", mine: false }
           ]
         },
         {
@@ -603,13 +603,13 @@
           color: "tone-lavender",
           online: false,
           subject: "Liberal Arts · 1st year",
-          preview: "Same here! What are you reading?",
+          preview: "Yes! We can quiz each other and compare notes.",
           time: "1d",
           unread: false,
           messages: [
-            { text: "I could talk about novels for hours. Are you reading anything good right now?", time: "Monday", mine: false },
-            { text: "Just started a little book of essays I found at a used book store.", time: "Monday", mine: true },
-            { text: "Same here! What are you reading?", time: "Monday", mine: false }
+            { text: "I have a biology exam coming up. What are you studying?", time: "Monday", mine: false },
+            { text: "I am reviewing calculus this week. Want to study together?", time: "Monday", mine: true },
+            { text: "Yes! We can quiz each other and compare notes.", time: "Monday", mine: false }
           ]
         }
       ];
@@ -630,7 +630,7 @@
       }
 
       function renderConnections() {
-        document.getElementById("match-count").textContent = `${conversations.length} lovely humans`;
+        document.getElementById("match-count").textContent = `${conversations.length} study partners`;
         matchList.innerHTML = conversations.map((person) => `
           <button class="match-person" type="button" data-conversation="${person.id}" aria-label="Message ${escapeHtml(person.name)}">
             <span class="avatar ${person.color} ${person.online ? "" : "offline"}">${escapeHtml(person.initials)}</span>
@@ -770,16 +770,16 @@
 
       window.addEventListener("message", (event) => {
         if (event.source !== window.parent) return;
-        if (event.data?.type === "lockedin:ping") {
-          window.parent.postMessage({ type: "lockedin:chat-ready" }, "*");
+        if (event.data?.type === "studyswipe:ping") {
+          window.parent.postMessage({ type: "studyswipe:chat-ready" }, "*");
           return;
         }
-        if (event.data?.type === "lockedin:open-study-chat") openStudyChat(event.data.profile);
+        if (event.data?.type === "studyswipe:open-study-chat") openStudyChat(event.data.profile);
       });
 
       renderConnections();
       selectConversation(activeId);
-      window.parent.postMessage({ type: "lockedin:chat-ready" }, "*");
+      window.parent.postMessage({ type: "studyswipe:chat-ready" }, "*");
     </script>
   </body>
 </html>

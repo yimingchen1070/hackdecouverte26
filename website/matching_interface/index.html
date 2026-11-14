@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#24201a">
-    <meta name="description" content="Découvrez des profils et trouvez votre prochain partenaire d'étude.">
-    <title>Locked In — Find your study buddy</title>
+    <meta name="description" content="Discover students and find your next study partner.">
+    <title>StudySwipe — Find study partners</title>
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
@@ -13,12 +13,12 @@
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <a class="brand" href="#" aria-label="Locked In, accueil">
-          <span class="brand-mark" aria-hidden="true">L</span>
-          <span>Locked In</span>
+        <a class="brand" href="#" aria-label="StudySwipe home">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span>StudySwipe</span>
         </a>
-        <p class="topbar-note">Révisez mieux, à deux.</p>
-        <button class="profile-button" type="button" aria-label="Votre profil">
+        <p class="topbar-note">Study better, together.</p>
+        <button class="profile-button" type="button" aria-label="Open your profile">
           <span aria-hidden="true">S</span>
         </button>
       </header>
@@ -28,58 +28,58 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">FIND YOUR STUDY BUDDY!</p>
-              <h1 id="page-title">Partenaires d'étude <span aria-hidden="true">✦</span></h1>
+              <h1 id="page-title">Study partners <span aria-hidden="true">✦</span></h1>
             </div>
-            <button class="filter-button" type="button" aria-label="Filtres">
+            <button class="filter-button" type="button" aria-label="Filters">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10m-7 5h4"/><circle cx="8" cy="7" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="12" cy="17" r="1.5"/></svg>
             </button>
           </div>
 
-          <div class="deck" id="deck" aria-live="polite" aria-label="Partenaires d'étude à découvrir">
+          <div class="deck" id="deck" aria-live="polite" aria-label="Study partners to explore">
             <article class="profile-card card-back card-back-two" aria-hidden="true"></article>
             <article class="profile-card card-back card-back-one" aria-hidden="true"></article>
-            <article class="profile-card active-card" id="active-card" aria-label="Profil étudiant de Thomas Kolivakis, 18 ans">
+            <article class="profile-card active-card" id="active-card" aria-label="Student profile for Thomas Kolivakis, age 18">
               <div class="card-photo" id="card-photo">
                 <div class="photo-shade"></div>
-                <div class="swipe-stamp like-stamp" aria-hidden="true">ON RÉVISE ?</div>
-                <div class="swipe-stamp nope-stamp" aria-hidden="true">PASSER</div>
+                <div class="swipe-stamp like-stamp" aria-hidden="true">STUDY TOGETHER?</div>
+                <div class="swipe-stamp nope-stamp" aria-hidden="true">PASS</div>
                 <div class="profile-info">
                   <div class="name-row">
                     <h2><span id="profile-name">Thomas Kolivakis,</span> <span id="profile-age">18</span></h2>
-                    <span class="verified" aria-label="Profil vérifié">✓</span>
+                    <span class="verified" aria-label="Verified profile">✓</span>
                   </div>
                   <p class="profile-program">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3.5 2.5 8.5 2.5 12 0v-5M22 9v6"/></svg>
-                    <span id="profile-program">Sciences de la nature · Collège Ahuntsic</span>
+                    <span id="profile-program">Natural Sciences · Ahuntsic College</span>
                   </p>
-                  <p class="main-interest"><span>INTÉRÊT PRINCIPAL</span><strong id="profile-interest">Physique et astronomie</strong></p>
-                  <p class="profile-bio" id="profile-bio">J'aime comprendre comment les choses fonctionnent. Partant pour réviser en groupe et s'entraider avant les examens. 📚</p>
+                  <p class="main-interest"><span>MAIN INTEREST</span><strong id="profile-interest">Physics and astronomy</strong></p>
+                  <p class="profile-bio" id="profile-bio">I enjoy understanding how things work. Looking for a study group where we can help each other prepare for exams. 📚</p>
                 </div>
               </div>
             </article>
             <div class="empty-state" id="empty-state" hidden>
               <span class="empty-sparkle" aria-hidden="true">✦</span>
-              <h2>Vous avez tout vu !</h2>
-              <p>Revenez bientôt pour découvrir de nouveaux partenaires d'étude.</p>
-              <button class="reset-button" id="reset-button" type="button">Recommencer</button>
+              <h2>You have seen everyone!</h2>
+              <p>Check back soon to meet new study partners.</p>
+              <button class="reset-button" id="reset-button" type="button">Start over</button>
             </div>
           </div>
 
-          <div class="actions" aria-label="Actions sur le profil">
-            <button class="action-button nope-action" id="nope-button" type="button" aria-label="Passer" title="Passer">
+          <div class="actions" aria-label="Profile actions">
+            <button class="action-button nope-action" id="nope-button" type="button" aria-label="Pass" title="Pass">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
             </button>
-            <button class="action-button undo-action" id="undo-button" type="button" aria-label="Annuler" title="Annuler">
+            <button class="action-button undo-action" id="undo-button" type="button" aria-label="Undo" title="Undo">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h9a7 7 0 0 1 0 14h-1"/></svg>
             </button>
-            <button class="action-button like-action" id="like-button" type="button" aria-label="Inviter à réviser" title="Inviter à réviser">
+            <button class="action-button like-action" id="like-button" type="button" aria-label="Invite to study" title="Invite to study">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9.5c-2.4-1.7-5.4-2.1-9-1.2v11c3.6-.9 6.6-.5 9 1.2m0-11c2.4-1.7 5.4-2.1 9-1.2v11c-3.6-.9-6.6-.5-9 1.2m0-11v11.2"/><path d="m14.5 7.5 5-5 2 2-5 5-3 1 1-3Z"/></svg>
             </button>
           </div>
-          <p class="keyboard-hint"><kbd>←</kbd> passer <span>·</span> <kbd>→</kbd> inviter à réviser</p>
+          <p class="keyboard-hint"><kbd>←</kbd> pass <span>·</span> <kbd>→</kbd> invite to study</p>
         </section>
       </main>
-      <footer class="footer"><span>Fait pour apprendre ensemble <span class="footer-accent" aria-hidden="true">✎</span></span><span class="footer-count" id="profile-count">6 partenaires à découvrir</span></footer>
+      <footer class="footer"><span>Made for learning together <span class="footer-accent" aria-hidden="true">✎</span></span><span class="footer-count" id="profile-count">4 study partners to discover</span></footer>
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </body>

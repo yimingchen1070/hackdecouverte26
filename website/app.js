@@ -39,21 +39,26 @@ chatFrame?.addEventListener("load", () => {
 function sendPendingStudyInvite() {
   if (!pendingStudyInvite || !chatFrame?.contentWindow) return;
   if (!chatFrameReady) {
-    chatFrame.contentWindow.postMessage({ type: "lockedin:ping" }, "*");
+    chatFrame.contentWindow.postMessage({ type: "studyswipe:ping" }, "*");
     return;
   }
-  chatFrame.contentWindow.postMessage({ type: "lockedin:open-study-chat", profile: pendingStudyInvite }, "*");
+  chatFrame.contentWindow.postMessage({ type: "studyswipe:open-study-chat", profile: pendingStudyInvite }, "*");
   pendingStudyInvite = null;
 }
 
 window.addEventListener("message", (event) => {
-  if (event.source === chatFrame?.contentWindow && event.data?.type === "lockedin:chat-ready") {
+  if (event.source === chatFrame?.contentWindow && event.data?.type === "studyswipe:chat-ready") {
     chatFrameReady = true;
     sendPendingStudyInvite();
     return;
   }
 
-  if (event.source !== matchingFrame?.contentWindow || event.data?.type !== "lockedin:study-invite") return;
+  if (event.source !== matchingFrame?.contentWindow) return;
+  if (event.data?.type === "studyswipe:open-profile") {
+    document.querySelector('[data-tab="profile"]')?.click();
+    return;
+  }
+  if (event.data?.type !== "studyswipe:study-invite") return;
   const profile = event.data.profile;
   if (!profile || typeof profile.name !== "string" || !profile.name.trim()) return;
   pendingStudyInvite = profile;
@@ -84,8 +89,8 @@ async function loadProfile(user) {
 
   const name = profile.name || profile.username || user.email?.split("@")[0] || "Student";
   document.querySelector("#profile-name").textContent = name;
-  document.querySelector("#profile-avatar").textContent = name.trim().charAt(0).toUpperCase() || "L";
-  document.querySelector("#profile-handle").textContent = profile.username ? `@${profile.username}` : (user.email || "");
+  document.querySelector("#profile-avatar").textContent = name.trim().charAt(0).toUpperCase() || "S";
+  document.querySelector("#profile-handle").textContent = profile.username ? `@${profile.username}` : ("Add a username to personalize your profile.");
   document.querySelector("#profile-school").textContent = profile.school || "Not added yet";
   document.querySelector("#profile-program").textContent = profile.program || "Not added yet";
   document.querySelector("#profile-age").textContent = profile.age ? `${profile.age}` : "Not added yet";

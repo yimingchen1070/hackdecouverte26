@@ -24,10 +24,10 @@ body::before { position: fixed; z-index: 20; inset: 0; background: repeating-lin
 button, a { font: inherit; }
 body > header { position: relative; z-index: 1; display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 20px; padding: 12px clamp(20px, 7vw, 104px); border-bottom: 1px solid var(--profile-line); background: rgba(36, 32, 26, .76); }
 body > header h1 { margin: 0; color: var(--profile-sage); font: 11px/1.8 "Press Start 2P", monospace; }
-nav[aria-label="LockedIn sections"] { display: flex; flex-wrap: wrap; gap: 8px; }
-nav[aria-label="LockedIn sections"] button, .pixel-button { border: 1px solid var(--profile-sage); border-radius: 0; padding: 9px 12px; background: var(--profile-plum); color: var(--profile-sage); box-shadow: 3px 3px 0 var(--profile-indigo); font-size: 11px; text-decoration: none; cursor: pointer; }
-nav[aria-label="LockedIn sections"] button:hover, .pixel-button:hover { background: var(--profile-indigo); transform: translate(-1px, -1px); }
-nav[aria-label="LockedIn sections"] button:focus-visible, .pixel-button:focus-visible { outline: 2px solid var(--profile-sage); outline-offset: 3px; }
+nav[aria-label="StudySwipe sections"] { display: flex; flex-wrap: wrap; gap: 8px; }
+nav[aria-label="StudySwipe sections"] button, .pixel-button { border: 1px solid var(--profile-sage); border-radius: 0; padding: 9px 12px; background: var(--profile-plum); color: var(--profile-sage); box-shadow: 3px 3px 0 var(--profile-indigo); font-size: 11px; text-decoration: none; cursor: pointer; }
+nav[aria-label="StudySwipe sections"] button:hover, .pixel-button:hover { background: var(--profile-indigo); transform: translate(-1px, -1px); }
+nav[aria-label="StudySwipe sections"] button:focus-visible, .pixel-button:focus-visible { outline: 2px solid var(--profile-sage); outline-offset: 3px; }
 main { position: relative; z-index: 1; width: min(900px, calc(100% - 32px)); margin: 28px auto 64px; }
 main > section[hidden] { display: none; }
 .profile-page { max-width: 760px; margin: 0 auto; }
@@ -65,7 +65,7 @@ main > section[hidden] { display: none; }
 .experience-organization, .experience-dates, .experience-description { margin: 4px 0 0; color: rgba(200, 199, 147, .75); font-size: 11px; line-height: 1.55; }
 .experience-dates { color: var(--profile-lavender); }
 .experience-description { color: rgba(200, 199, 147, .9); }
-@media (max-width: 680px) { body > header { align-items: flex-start; flex-direction: column; } nav[aria-label="LockedIn sections"] { width: 100%; } nav[aria-label="LockedIn sections"] button { flex: 1 1 auto; } .profile-grid { grid-template-columns: 1fr; } .identity-card { align-items: flex-start; flex-wrap: wrap; } .identity-copy { flex-basis: calc(100% - 100px); } .edit-profile { margin-left: 92px; } .journey-heading { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 680px) { body > header { align-items: flex-start; flex-direction: column; } nav[aria-label="StudySwipe sections"] { width: 100%; } nav[aria-label="StudySwipe sections"] button { flex: 1 1 auto; } .profile-grid { grid-template-columns: 1fr; } .identity-card { align-items: flex-start; flex-wrap: wrap; } .identity-copy { flex-basis: calc(100% - 100px); } .edit-profile { margin-left: 92px; } .journey-heading { align-items: flex-start; flex-direction: column; } }
 
 /* Profile setup shares the same pixel interface. */
 body:has(#experience-form) > header { border-bottom: 1px solid var(--profile-line); }

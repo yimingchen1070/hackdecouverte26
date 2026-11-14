@@ -2,33 +2,33 @@ const profiles = [
   {
     name: "Thomas",
     age: 18,
-    program: "Arts and Science · Cegep Marianopolis",
+    program: "Arts and Science · Marianopolis College",
     mainInterest: "Trivia",
-    bio: "Rizz and revise. Looking for a 5h+ study partner. Down to conversate while studying. 10/10 only",
+    bio: "I enjoy studying with others and am looking for a focused study partner for longer sessions.",
     photo: "images/thomas-kolivakis.png",
   },
   {
     name: "Nicole",
     age: 17,
-    program: "Pure and Applied Science· Cegep Marianopolis",
+    program: "Pure and Applied Science · Marianopolis College",
     mainInterest: "Engineering",
-    bio: "Looking for a new friends to study with",
+    bio: "Looking to meet new friends and study together.",
     photo: "images/nicole.png",
   },
   {
     name: "Elmer",
     age: 17,
-    program: "Pure and Applied Science· Cegep Marianopolis",
+    program: "Pure and Applied Science · Marianopolis College",
     mainInterest: "Planes and larp",
-    bio: "Looking for someone to build drones ncp",
+    bio: "I enjoy building drones and am looking for a teammate for hands-on projects.",
     photo: "images/elmer.png",
   },
   {
     name: "Lilya",
     age: 17,
-    program: "Health Science · Cegep Dawson",
+    program: "Health Science · Dawson College",
     mainInterest: "Neurosciences",
-    bio: "I need to lock in for finals",
+    bio: "Getting ready for finals and looking for a focused study partner.",
     photo: "images/lilya.png",
   },
 ];
@@ -39,6 +39,9 @@ const toast = document.querySelector("#toast");
 const deck = document.querySelector("#deck");
 const undoButton = document.querySelector("#undo-button");
 const emptyState = document.querySelector("#empty-state");
+document.querySelector(".profile-button").addEventListener("click", () => {
+  window.parent.postMessage({ type: "studyswipe:open-profile" }, "*");
+});
 const actionButtons = {
   nope: document.querySelector("#nope-button"),
   like: document.querySelector("#like-button"),
@@ -63,7 +66,7 @@ function renderProfile() {
     card.hidden = true;
     deck.querySelectorAll(".card-back").forEach((backCard) => { backCard.hidden = true; });
     emptyState.hidden = false;
-    document.querySelector("#profile-count").textContent = "Tous les profils consultés";
+    document.querySelector("#profile-count").textContent = "You have seen all available profiles";
     return;
   }
 
@@ -76,7 +79,7 @@ function renderProfile() {
   document.querySelector("#profile-program").textContent = profile.program;
   document.querySelector("#profile-interest").textContent = profile.mainInterest;
   document.querySelector("#profile-bio").textContent = profile.bio;
-  document.querySelector("#profile-count").textContent = `${profiles.length - profileIndex} partenaires à découvrir`;
+  document.querySelector("#profile-count").textContent = `${profiles.length - profileIndex} study partners to discover`;
   undoButton.disabled = !previousAction;
 }
 
@@ -88,9 +91,9 @@ function advance(action) {
   renderProfile();
 
   if (action === "like") {
-    showToast(`Invitation à réviser proposée à ${currentProfile.name} 📚`);
+    showToast(`Study invitation sent to ${currentProfile.name} 📚`);
     window.parent.postMessage({
-      type: "lockedin:study-invite",
+      type: "studyswipe:study-invite",
       profile: {
         name: currentProfile.name,
         age: currentProfile.age,
@@ -129,7 +132,7 @@ undoButton.addEventListener("click", () => {
   profileIndex = previousAction.profileIndex;
   previousAction = null;
   renderProfile();
-  showToast("Votre dernier choix a été annulé");
+  showToast("Your last choice has been undone.");
 });
 
 document.querySelector("#reset-button").addEventListener("click", () => {
@@ -140,7 +143,7 @@ document.querySelector("#reset-button").addEventListener("click", () => {
 });
 
 document.querySelector(".filter-button").addEventListener("click", () => {
-  showToast("Les filtres seront bientôt disponibles");
+  showToast("Filters are coming soon.");
 });
 
 card.addEventListener("pointerdown", (event) => {
