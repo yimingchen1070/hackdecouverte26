@@ -109,28 +109,6 @@ main { flex: 1; }
 
 .discovery { width: min(100% - 32px, 440px); margin: 28px auto 0; }
 
-.depth-track {
-  position: fixed;
-  z-index: 0;
-  top: 138px;
-  right: clamp(24px, 5vw, 78px);
-  bottom: 116px;
-  display: flex;
-  width: 154px;
-  flex-direction: column;
-  justify-content: space-between;
-  border-right: 1px solid rgba(200, 199, 147, .3);
-  color: var(--faint);
-  font-size: 8px;
-  letter-spacing: 1px;
-  pointer-events: none;
-  text-align: right;
-}
-
-.depth-track span { position: relative; padding-right: 13px; }
-.depth-track span::after { position: absolute; top: 50%; right: -1px; width: 8px; border-top: 1px solid var(--sage); content: ""; }
-.depth-track .depth-caption { color: var(--lavender); font-family: "Press Start 2P", monospace; font-size: 7px; }
-
 .section-heading {
   display: flex;
   align-items: center;
@@ -332,10 +310,6 @@ kbd { display: inline-grid; min-width: 20px; height: 20px; place-items: center; 
   .name-row h2 { font-size: 17px; }
   .actions { gap: 13px; margin-top: 19px; }
   .footer { padding: 17px 18px; }
-}
-
-@media (max-width: 900px) {
-  .depth-track { display: none; }
 }
 
 @media (max-height: 700px) {
