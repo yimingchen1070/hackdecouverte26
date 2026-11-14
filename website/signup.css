@@ -1,0 +1,22 @@
+.signup-header { position: relative; z-index: 1; display: flex; min-height: 68px; align-items: center; justify-content: space-between; gap: 16px; padding: 12px clamp(20px, 7vw, 104px); border-bottom: 1px solid var(--profile-line); background: rgba(36, 32, 26, .76); }
+.signup-logo { color: var(--profile-sage); font: 10px/1.8 "Press Start 2P", monospace; text-decoration: none; }
+.signup-back { color: rgba(200, 199, 147, .76); font-size: 11px; text-decoration: none; }
+.signup-back:hover { color: var(--profile-sage); }
+.signup-page { width: min(560px, calc(100% - 32px)); margin: 28px auto 60px; }
+.signup-card { padding: clamp(20px, 5vw, 34px); border: 1px solid var(--profile-line); border-top: 2px solid var(--profile-sage); background: linear-gradient(145deg, rgba(63, 37, 72, .96), rgba(36, 32, 26, .97)); box-shadow: 5px 6px 0 rgba(36, 32, 26, .85), 0 0 0 3px rgba(53, 54, 156, .82); }
+.signup-card > .pixel-eyebrow { margin-bottom: 12px; }
+.signup-card h1 { margin: 0; color: var(--profile-sage); font: 14px/1.8 "Press Start 2P", monospace; }
+.signup-intro { margin: 12px 0 22px; color: rgba(200, 199, 147, .76); font-size: 12px; line-height: 1.6; }
+.signup-form { display: grid; gap: 13px; }
+.signup-form label { display: grid; gap: 7px; color: var(--profile-sage); font-size: 11px; }
+.signup-form input { width: 100%; min-height: 42px; border: 1px solid rgba(200, 199, 147, .34); border-radius: 0; padding: 10px 12px; background: rgba(36, 32, 26, .78); color: var(--profile-sage); font: 12px "IBM Plex Mono", monospace; box-shadow: inset 2px 2px 0 rgba(0, 0, 0, .28); }
+.signup-form input::placeholder { color: rgba(200, 199, 147, .48); }
+.signup-form input:focus-visible { outline: 2px solid var(--profile-lavender); outline-offset: 2px; }
+.signup-submit { justify-self: start; margin-top: 5px; border: 1px solid var(--profile-sage); border-radius: 0; padding: 11px 16px; background: linear-gradient(145deg, var(--profile-lavender), var(--profile-indigo)); color: var(--profile-sage); font: 9px/1.8 "Press Start 2P", monospace; box-shadow: 4px 4px 0 rgba(36, 32, 26, .85); cursor: pointer; }
+.signup-submit:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 rgba(36, 32, 26, .85); }
+.signup-submit:focus-visible, .signup-back:focus-visible, .signup-logo:focus-visible { outline: 2px solid var(--profile-sage); outline-offset: 4px; }
+.signup-status { min-height: 1em; margin: 16px 0 0; border-left: 2px solid var(--profile-lavender); padding-left: 10px; color: rgba(200, 199, 147, .82); font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+@media (max-width: 480px) { .signup-header { min-height: 60px; } .signup-logo { font-size: 8px; } .signup-card h1 { font-size: 11px; } }
+.signup-nav { display: flex; align-items: center; gap: 18px; }
+.signup-nav > a:first-child { color: var(--profile-sage); font-size: 11px; text-decoration: none; }
+.signup-nav > a:first-child:hover { color: var(--profile-lavender); }
