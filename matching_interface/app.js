@@ -2,80 +2,50 @@ const profiles = [
   {
     name: "Thomas Kolivakis",
     age: 18,
-    distance: "",
-    city: "Montréal",
-    bio: "Toujours partante pour un café, une expo ou un billet de train pris sur un coup de tête. ☕️",
-    interests: ["Art & culture", "Voyages", "Brunch"],
-    photos: [
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=85",
-    ],
+    program: "Sciences de la nature · Cegep Marianopolis",
+    mainInterest: "Trivia",
+    bio: "Rizz and revise. Looking for a 5h+ study partner. Down to conversate while studying. 10/10 only",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=85",
   },
   {
-    name: "Léa",
-    age: 25,
-    distance: "À 5 km",
-    city: "Montréal",
-    bio: "Photographe amateur, pro des playlists et à la recherche des meilleurs tacos de la ville. 🌮",
-    interests: ["Photographie", "Musique", "Cuisine"],
-    photos: [
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1526510747491-58f928ec870f?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=1000&q=85",
-    ],
+    name: "Nicole",
+    age: 17,
+    program: "Design graphique · UQAM",
+    mainInterest: "Illustration numérique",
+    bio: "J'aime apprendre en échangeant des idées et en faisant des fiches colorées. Toujours partante pour une session de travail à la bibliothèque. ✏️",
+    photo: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85",
   },
   {
     name: "Noah",
     age: 28,
-    distance: "À 2 km",
-    city: "Montréal",
-    bio: "Architecte le jour, chef de pâtes fraîches le dimanche. Je connais un joli coin au bord du canal. 🍝",
-    interests: ["Architecture", "Vélo", "Cuisine"],
-    photos: [
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1000&q=85",
-    ],
+    program: "Architecture · Université de Montréal",
+    mainInterest: "Architecture durable",
+    bio: "J'aime travailler en équipe sur des projets et comparer nos méthodes de prise de notes. Café et révisions, ça te dit ? ☕",
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=85",
   },
   {
     name: "Inès",
     age: 27,
-    distance: "À 7 km",
-    city: "Montréal",
-    bio: "Je collectionne les plantes et les petites adresses gourmandes. La prochaine découverte, c’est avec toi ? 🌿",
-    interests: ["Nature", "Lecture", "Café"],
-    photos: [
-      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1000&q=85",
-    ],
+    program: "Psychologie · Université de Montréal",
+    mainInterest: "Neurosciences",
+    bio: "J'apprends mieux en expliquant les notions à voix haute. On peut se motiver mutuellement pour les examens ! 🧠",
+    photo: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1000&q=85",
   },
   {
     name: "Jules",
     age: 29,
-    distance: "À 4 km",
-    city: "Montréal",
-    bio: "Aventurier du dimanche, fan de cinéma et convaincu qu’un bon dessert règle presque tout. 🍰",
-    interests: ["Cinéma", "Randonnée", "Dessert"],
-    photos: [
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?auto=format&fit=crop&w=1000&q=85",
-    ],
+    program: "Génie logiciel · Polytechnique Montréal",
+    mainInterest: "Programmation",
+    bio: "J'aime résoudre des problèmes à plusieurs et partager des astuces de code. Dispo pour un sprint de révision ? 💻",
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=85",
   },
   {
     name: "Sarah",
     age: 26,
-    distance: "À 6 km",
-    city: "Montréal",
-    bio: "Yoga au lever du soleil, concert le soir. Entre les deux, je trouve toujours le temps pour un latte. ✨",
-    interests: ["Yoga", "Concerts", "Voyages"],
-    photos: [
-      "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1000&q=85",
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=85",
-    ],
+    program: "Biologie · Université McGill",
+    mainInterest: "Écologie",
+    bio: "Je prépare des quiz pour réviser et j'adore étudier dehors quand il fait beau. On se fait une session productive ? 🌱",
+    photo: "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=1000&q=85",
   },
 ];
 
@@ -88,10 +58,8 @@ const emptyState = document.querySelector("#empty-state");
 const actionButtons = {
   nope: document.querySelector("#nope-button"),
   like: document.querySelector("#like-button"),
-  super: document.querySelector("#super-button"),
 };
 let profileIndex = 0;
-let photoIndex = 0;
 let previousAction = null;
 let pointerStart = null;
 let toastTimeout;
@@ -111,29 +79,20 @@ function renderProfile() {
     card.hidden = true;
     deck.querySelectorAll(".card-back").forEach((backCard) => { backCard.hidden = true; });
     emptyState.hidden = false;
-    document.querySelector("#profile-count").textContent = "Découverte terminée";
+    document.querySelector("#profile-count").textContent = "Tous les profils consultés";
     return;
   }
 
   card.hidden = false;
   card.setAttribute("aria-label", `Profil de ${profile.name}, ${profile.age} ans`);
   emptyState.hidden = true;
-  photoIndex = 0;
-  photo.style.backgroundImage = `url("${profile.photos[photoIndex]}")`;
+  photo.style.backgroundImage = `url("${profile.photo}")`;
   document.querySelector("#profile-name").textContent = `${profile.name},`;
   document.querySelector("#profile-age").textContent = profile.age;
-  document.querySelector("#profile-distance").textContent = profile.distance;
-  document.querySelector("#profile-city").textContent = profile.city;
+  document.querySelector("#profile-program").textContent = profile.program;
+  document.querySelector("#profile-interest").textContent = profile.mainInterest;
   document.querySelector("#profile-bio").textContent = profile.bio;
-  document.querySelector("#photo-number").textContent = "1";
-  document.querySelector("#profile-interests").replaceChildren(
-    ...profile.interests.map((interest) => {
-      const tag = document.createElement("span");
-      tag.textContent = interest;
-      return tag;
-    }),
-  );
-  document.querySelector("#profile-count").textContent = `${profiles.length - profileIndex} profils à découvrir`;
+  document.querySelector("#profile-count").textContent = `${profiles.length - profileIndex} partenaires à découvrir`;
   undoButton.disabled = !previousAction;
 }
 
@@ -144,8 +103,7 @@ function advance(action) {
   profileIndex += 1;
   renderProfile();
 
-  if (action === "like") showToast(`Vous avez aimé le profil de ${currentProfile.name} ❤️`);
-  if (action === "super") showToast(`Super coup de cœur envoyé à ${currentProfile.name} ✨`);
+  if (action === "like") showToast(`Invitation à réviser proposée à ${currentProfile.name} 📚`);
 }
 
 function swipe(action) {
@@ -168,21 +126,8 @@ function swipe(action) {
   }, 260);
 }
 
-function showNextPhoto() {
-  const profile = profiles[profileIndex];
-  if (!profile) return;
-  photoIndex = (photoIndex + 1) % profile.photos.length;
-  photo.style.backgroundImage = `url("${profile.photos[photoIndex]}")`;
-  document.querySelector("#photo-number").textContent = photoIndex + 1;
-}
-
 actionButtons.nope.addEventListener("click", () => swipe("nope"));
 actionButtons.like.addEventListener("click", () => swipe("like"));
-actionButtons.super.addEventListener("click", () => swipe("super"));
-document.querySelector("#next-photo").addEventListener("click", (event) => {
-  event.stopPropagation();
-  showNextPhoto();
-});
 
 undoButton.addEventListener("click", () => {
   if (!previousAction) return;

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#fff9f7">
-    <meta name="description" content="Découvrez des profils et trouvez votre prochain coup de cœur.">
-    <title>Élan — Faites de belles rencontres</title>
+    <meta name="theme-color" content="#24201a">
+    <meta name="description" content="Découvrez des profils et trouvez votre prochain partenaire d'étude.">
+    <title>Find your study buddy</title>
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
@@ -13,80 +13,81 @@
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <a class="brand" href="#" aria-label="Élan, accueil">
-          <span class="brand-mark" aria-hidden="true">É</span>
-          <span>élan</span>
+        <a class="brand" href="#" aria-label="Binôme, accueil">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>binôme</span>
         </a>
-        <p class="topbar-note">Les belles rencontres commencent ici.</p>
+        <p class="topbar-note">Révisez mieux, à deux.</p>
         <button class="profile-button" type="button" aria-label="Votre profil">
           <span aria-hidden="true">S</span>
         </button>
       </header>
 
+      <aside class="depth-track" aria-hidden="true">
+        <span class="depth-caption">STUDY DEPTH</span>
+        <span>00m · WARM-UP</span>
+        <span>15m · FOCUS ZONE</span>
+        <span>30m · DEEP WORK</span>
+        <span>45m · THE ABYSS</span>
+      </aside>
+
       <main>
         <section class="discovery" aria-labelledby="page-title">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">VOTRE PROCHAINE BELLE HISTOIRE</p>
-              <h1 id="page-title">À découvrir <span aria-hidden="true">✦</span></h1>
+              <p class="eyebrow">FIND YOUR STUDY BUDDY!</p>
+              <h1 id="page-title">Partenaires d'étude <span aria-hidden="true">✦</span></h1>
             </div>
             <button class="filter-button" type="button" aria-label="Filtres">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10m-7 5h4"/><circle cx="8" cy="7" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="12" cy="17" r="1.5"/></svg>
             </button>
           </div>
 
-          <div class="deck" id="deck" aria-live="polite" aria-label="Profils à découvrir">
+          <div class="deck" id="deck" aria-live="polite" aria-label="Partenaires d'étude à découvrir">
             <article class="profile-card card-back card-back-two" aria-hidden="true"></article>
             <article class="profile-card card-back card-back-one" aria-hidden="true"></article>
-            <article class="profile-card active-card" id="active-card" aria-label="Profil de Camille, 26 ans">
+            <article class="profile-card active-card" id="active-card" aria-label="Profil étudiant de Thomas Kolivakis, 18 ans">
               <div class="card-photo" id="card-photo">
                 <div class="photo-shade"></div>
-                <div class="swipe-stamp like-stamp" aria-hidden="true">J’AIME</div>
+                <div class="swipe-stamp like-stamp" aria-hidden="true">ON RÉVISE ?</div>
                 <div class="swipe-stamp nope-stamp" aria-hidden="true">PASSER</div>
-                <div class="photo-topline">
-                  <span class="online-status"><span></span> En ligne</span>
-                  <span class="photo-count"><span id="photo-number">1</span> / 3</span>
-                </div>
-                <button class="photo-next" id="next-photo" type="button" aria-label="Photo suivante">›</button>
                 <div class="profile-info">
                   <div class="name-row">
-                    <h2><span id="profile-name">Camille,</span> <span id="profile-age">26</span></h2>
+                    <h2><span id="profile-name">Thomas Kolivakis,</span> <span id="profile-age">18</span></h2>
                     <span class="verified" aria-label="Profil vérifié">✓</span>
                   </div>
-                  <p class="distance"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span id="profile-distance">À 3 km</span> · <span id="profile-city">Montréal</span></p>
-                  <p class="profile-bio" id="profile-bio">Toujours partante pour un café, une expo ou un billet de train pris sur un coup de tête. ☕️</p>
-                  <div class="interests" id="profile-interests">
-                    <span>Art & culture</span><span>Voyages</span><span>Brunch</span>
-                  </div>
+                  <p class="profile-program">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3.5 2.5 8.5 2.5 12 0v-5M22 9v6"/></svg>
+                    <span id="profile-program">Sciences de la nature · Collège Ahuntsic</span>
+                  </p>
+                  <p class="main-interest"><span>INTÉRÊT PRINCIPAL</span><strong id="profile-interest">Physique et astronomie</strong></p>
+                  <p class="profile-bio" id="profile-bio">J'aime comprendre comment les choses fonctionnent. Partant pour réviser en groupe et s'entraider avant les examens. 📚</p>
                 </div>
               </div>
             </article>
             <div class="empty-state" id="empty-state" hidden>
               <span class="empty-sparkle" aria-hidden="true">✦</span>
               <h2>Vous avez tout vu !</h2>
-              <p>Revenez bientôt pour découvrir de nouveaux profils.</p>
+              <p>Revenez bientôt pour découvrir de nouveaux partenaires d'étude.</p>
               <button class="reset-button" id="reset-button" type="button">Recommencer</button>
             </div>
           </div>
 
           <div class="actions" aria-label="Actions sur le profil">
-            <button class="action-button undo-action" id="undo-button" type="button" aria-label="Annuler" title="Annuler">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h9a7 7 0 0 1 0 14h-1"/></svg>
-            </button>
             <button class="action-button nope-action" id="nope-button" type="button" aria-label="Passer" title="Passer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
             </button>
-            <button class="action-button like-action" id="like-button" type="button" aria-label="J’aime" title="J’aime">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>
+            <button class="action-button undo-action" id="undo-button" type="button" aria-label="Annuler" title="Annuler">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h9a7 7 0 0 1 0 14h-1"/></svg>
             </button>
-            <button class="action-button super-action" id="super-button" type="button" aria-label="Super coup de cœur" title="Super coup de cœur">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2Z"/><path d="m19 15 1.2 2.8L23 19l-2.8 1.2L19 23l-1.2-2.8L15 19l2.8-1.2L19 15Z"/></svg>
+            <button class="action-button like-action" id="like-button" type="button" aria-label="Inviter à réviser" title="Inviter à réviser">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9.5c-2.4-1.7-5.4-2.1-9-1.2v11c3.6-.9 6.6-.5 9 1.2m0-11c2.4-1.7 5.4-2.1 9-1.2v11c-3.6-.9-6.6-.5-9 1.2m0-11v11.2"/><path d="m14.5 7.5 5-5 2 2-5 5-3 1 1-3Z"/></svg>
             </button>
           </div>
-          <p class="keyboard-hint"><kbd>←</kbd> passer <span>·</span> <kbd>→</kbd> aimer</p>
+          <p class="keyboard-hint"><kbd>←</kbd> passer <span>·</span> <kbd>→</kbd> inviter à réviser</p>
         </section>
       </main>
-      <footer class="footer"><span>Fait avec <span class="footer-heart">♥</span> à Montréal</span><span class="footer-count" id="profile-count">6 profils à découvrir</span></footer>
+      <footer class="footer"><span>Fait pour apprendre ensemble <span class="footer-accent" aria-hidden="true">✎</span></span><span class="footer-count" id="profile-count">6 partenaires à découvrir</span></footer>
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </body>
