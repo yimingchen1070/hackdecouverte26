@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24201a">
+  <title>Log in | LockedIn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <a class="logo" href="index.html">LockedIn</a>
+      <nav class="nav" aria-label="Account navigation">
+        <a href="login.html" aria-current="page">Log in</a>
+        <a href="signup.html">Sign up</a>
+      </nav>
+    </header>
+    <main class="center">
+      <section class="card form-card" aria-labelledby="login-title">
+        <p class="eyebrow">LockedIn</p>
+        <h1 id="login-title">Log in</h1>
+        <form id="login-form">
+          <label>Email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>Password
+            <input type="password" name="password" autocomplete="current-password" required>
+          </label>
+          <button class="pill" type="submit">▼ Log in ▼</button>
+        </form>
+        <p id="login-status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

@@ -17,3 +17,6 @@
 .signup-submit:focus-visible, .signup-back:focus-visible, .signup-logo:focus-visible { outline: 2px solid var(--profile-sage); outline-offset: 4px; }
 .signup-status { min-height: 1em; margin: 16px 0 0; border-left: 2px solid var(--profile-lavender); padding-left: 10px; color: rgba(200, 199, 147, .82); font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
 @media (max-width: 480px) { .signup-header { min-height: 60px; } .signup-logo { font-size: 8px; } .signup-card h1 { font-size: 11px; } }
+.signup-nav { display: flex; align-items: center; gap: 18px; }
+.signup-nav > a:first-child { color: var(--profile-sage); font-size: 11px; text-decoration: none; }
+.signup-nav > a:first-child:hover { color: var(--profile-lavender); }
